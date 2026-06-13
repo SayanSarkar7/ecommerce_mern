@@ -38,11 +38,37 @@ const productSchema = mongoose.Schema({
   stock: {
     type: Number,
     required: [true, "Please Enetr Product Stock"],
-    maxLength:[4,"Stock can not exceed 4 characters"],
-    default:1
+    maxLength: [4, "Stock can not exceed 4 characters"],
+    default: 1,
   },
-  numOfReviews:{
-    type:String,
-    
-  }
+  numOfReviews: {
+    type: Number,
+    default: 0,
+  },
+  reviews: [
+    {
+      name: {
+        type: String,
+        required: true,
+      },
+    },
+    {
+      rating: {
+        type: Number,
+        required: true,
+      },
+    },
+    {
+      comment: {
+        type: String,
+        required: true,
+      },
+    },
+  ],
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
+
+module.exports=mongoose.model("Product",productSchema);
