@@ -73,18 +73,18 @@ exports.forgotPassword = catchAsyncError(async (req, res, next) => {
 
   const resetPasswordUrl = `${req.protocol}://${req.get("host")}/api/v1/password/reset/${resetToken}`;
 
-  const message = `Your password reset token is: \n\n ${resetToken} \n\n If you haven't requested this email then, please ignore it.`;
+  const message = `Your password reset token is: \n\n ${resetPasswordUrl} \n\n If you haven't requested this email then, please ignore it.`;
 
   try {
     await sendEmail({
-      email:user.email,
-      subject:`ecommerce_mern Password Pecovery`,
-      message:message
-    })
+      email: user.email,
+      subject: `ecommerce_mern Password Recovery`,
+      message: message,
+    });
     res.status(200).json({
-      success:true,
-      message:`Email sent to ${user.email} successfully`
-    })
+      success: true,
+      message: `Email sent to ${user.email} successfully`,
+    });
   } catch (error) {
     user.resetPasswordToken = undefined;
     user.resetPasswordExpired = undefined;
