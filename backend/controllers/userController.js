@@ -130,3 +130,56 @@ exports.resetPassword = catchAsyncError(async (req, res, next) => {
 
   sendToken(user, 200, res);
 });
+
+// Get User Details
+exports.getUserDetails = catchAsyncError(async (req, res, next) => {
+  const user = await User.findById(req.user.id);
+
+  res.status(200).json({
+    success: true,
+    user: user,
+  });
+});
+
+// Update User Password
+exports.updatePassword = catchAsyncError(async (req, res, next) => {
+  if (!req.body) {
+    return next(new ErrorHandler("Please Enter passwords", 400));
+  }
+  const user = await User.findById(req.user.id).select("+password");
+
+  const isPasswordMatched = await user.comparePassword(req.body.oldPassword);
+
+  if (!isPasswordMatched) {
+    return next(new ErrorHandler("Old Password is incorrect", 400));
+  }
+  if (req.body.newPassword !== req.body.confirmPassword) {
+    return next(new ErrorHandler("Password doesn't match", 400));
+  }
+
+  user.password = req.body.newPassword;
+  await user.save();
+
+  sendToken(user, 200, res);
+});
+// Update User Profile
+exports.updateProfile = catchAsyncError(async (req, res, next) => {
+  if (!req.body) {
+    return next(new ErrorHandler("Please Enter passwords", 400));
+  }
+  const user = await User.findById(req.user.id).select("+password");
+
+  const isPasswordMatched = await user.comparePassword(req.body.oldPassword);
+
+  if (!isPasswordMatched) {
+    return next(new ErrorHandler("Old Password is incorrect", 400));
+  }
+  if (req.body.newPassword !== req.body.confirmPassword) {
+    return next(new ErrorHandler("Password doesn't match", 400));
+  }
+
+  user.password = req.body.newPassword;
+  await user.save();
+
+  sendToken(user, 200, res);
+});
