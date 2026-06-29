@@ -18,7 +18,7 @@ exports.registerUser = catchAsyncError(async (req, res, next) => {
     },
   });
 
-  sendToken(user, 201, res);
+  sendToken(user, 201, res,"User Registered Successfully");
 });
 
 //Login User
@@ -128,7 +128,7 @@ exports.resetPassword = catchAsyncError(async (req, res, next) => {
 
   await user.save();
 
-  sendToken(user, 200, res);
+  sendToken(user, 200, res,"User Password Reset Successfully");
 });
 
 // Get User Details
@@ -160,26 +160,24 @@ exports.updatePassword = catchAsyncError(async (req, res, next) => {
   user.password = req.body.newPassword;
   await user.save();
 
-  sendToken(user, 200, res);
+  sendToken(user, 200, res, "User Password Updated Successfully");
 });
 // Update User Profile
 exports.updateProfile = catchAsyncError(async (req, res, next) => {
-  if (!req.body) {
-    return next(new ErrorHandler("Please Enter passwords", 400));
-  }
-  const user = await User.findById(req.user.id).select("+password");
+  const newUserData = {
+    name: req.body.name,
+    email: req.body.email,
+  };
 
-  const isPasswordMatched = await user.comparePassword(req.body.oldPassword);
+  // will add cloudinary later
 
-  if (!isPasswordMatched) {
-    return next(new ErrorHandler("Old Password is incorrect", 400));
-  }
-  if (req.body.newPassword !== req.body.confirmPassword) {
-    return next(new ErrorHandler("Password doesn't match", 400));
-  }
+  const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
+    runValidators: true,
+    useFindAndModify: false,
+  });
 
-  user.password = req.body.newPassword;
-  await user.save();
-
-  sendToken(user, 200, res);
+  res.status(200).json({
+    success: true,
+    message: "User profile updated Successfully",
+  });
 });
