@@ -18,7 +18,7 @@ exports.registerUser = catchAsyncError(async (req, res, next) => {
     },
   });
 
-  sendToken(user, 201, res,"User Registered Successfully");
+  sendToken(user, 201, res, "User Registered Successfully");
 });
 
 //Login User
@@ -128,7 +128,7 @@ exports.resetPassword = catchAsyncError(async (req, res, next) => {
 
   await user.save();
 
-  sendToken(user, 200, res,"User Password Reset Successfully");
+  sendToken(user, 200, res, "User Password Reset Successfully");
 });
 
 // Get User Details
@@ -179,5 +179,31 @@ exports.updateProfile = catchAsyncError(async (req, res, next) => {
   res.status(200).json({
     success: true,
     message: "User profile updated Successfully",
+  });
+});
+
+// Get all Users (admin)
+exports.getAllUser = catchAsyncError(async (req, res, next) => {
+  const users = await User.find();
+
+  res.status(200).json({
+    success: true,
+    users: users,
+  });
+});
+
+// Get a single User (admin)
+exports.getSingleUser = catchAsyncError(async (req, res, next) => {
+  const user = await User.findById(req.params.id);
+
+  if (!user) {
+    return next(
+      new ErrorHandler(`User doesn't exist with id: ${req.params.id}`),
+    );
+  }
+
+  res.status(200).json({
+    success: true,
+    user: user,
   });
 });
