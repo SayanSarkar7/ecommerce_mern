@@ -1,0 +1,43 @@
+diff --git a/node_modules/overlay-navbar/dist/lib/ReactNavbar.js b/node_modules/overlay-navbar/dist/lib/ReactNavbar.js
+index e6b497c..04bb728 100644
+--- a/node_modules/overlay-navbar/dist/lib/ReactNavbar.js
++++ b/node_modules/overlay-navbar/dist/lib/ReactNavbar.js
+@@ -13,7 +13,10 @@ require("./ReactNavbar.min.css");
+ 
+ var _reactRouterDom = require("react-router-dom");
+ 
+-var _all = require("react-icons/all");
++// var _all = require("react-icons/all");
++var _im = require("react-icons/im");
++var _fi = require("react-icons/fi");
++var _ri = require("react-icons/ri");
+ 
+ function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+ 
+@@ -366,7 +369,7 @@ const ReactNavbar = _ref => {
+     }
+   }, searchIcon ? /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+     to: searchIconUrl
+-  }, /*#__PURE__*/_react.default.createElement(_all.ImSearch, {
++  }, /*#__PURE__*/_react.default.createElement(_im.ImSearch, {
+     id: "searchIcon",
+     style: {
+       transition: "all ".concat(searchIconTransition, "s"),
+@@ -377,7 +380,7 @@ const ReactNavbar = _ref => {
+     color: searchIconColor
+   })) : "", cartIcon ? /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+     to: cartIconUrl
+-  }, /*#__PURE__*/_react.default.createElement(_all.FiShoppingBag, {
++  }, /*#__PURE__*/_react.default.createElement(_fi.FiShoppingBag, {
+     id: "cartIcon",
+     style: {
+       transition: "all ".concat(cartIconTransition, "s"),
+@@ -388,7 +391,7 @@ const ReactNavbar = _ref => {
+     color: cartIconColor
+   })) : "", profileIcon ? /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+     to: profileIconUrl
+-  }, /*#__PURE__*/_react.default.createElement(_all.RiAccountBoxFill, {
++  }, /*#__PURE__*/_react.default.createElement(_ri.RiAccountBoxFill, {
+     id: "profileIcon",
+     style: {
+       transition: "all ".concat(profileIconTransition, "s"),
