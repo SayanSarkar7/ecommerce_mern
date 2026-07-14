@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { CgMouse } from "react-icons/cg";
 import "./Home.css"
 import Product from "./Product.js"
+import MetaData from "../layout/MetaData.js"
 
 const product={
   name:"blue shirt",
@@ -13,6 +14,7 @@ const product={
 const Home = () => {
   return (
     <Fragment>
+      <MetaData title={"Ecommerce Mern"}/>
       <div className="banner">
         <p>Welcome to Ecommerce</p>
         <h1>FIND AMAZING PRODUCTS BELOW</h1>

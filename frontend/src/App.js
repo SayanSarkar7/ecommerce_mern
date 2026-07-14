@@ -4,7 +4,7 @@ import Header from "./component/layout/Header/Header.js";
 import { BrowserRouter as Router,Route } from "react-router-dom";
 import webFont from "webfontloader";
 import Footer from "./component/layout/Footer/Footer.js";
-import Home from "./component/layout/Home/Home.js";
+import Home from "./component/Home/Home.js";
 
 function App() {
   useEffect(() => {
