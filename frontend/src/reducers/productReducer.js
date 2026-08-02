@@ -2,11 +2,11 @@ import {
   ALL_PRODUCT_REQUEST,
   ALL_PRODUCT_SUCCESS,
   ALL_PRODUCT_FAIL,
+  CLEAR_ERRORS,
 } from "../constants/productConstants";
 
 export const productReducer =
-  ((state = { products: [] }),
-  (action) => {
+  (state = { products: [] }, action) => {
     switch (action.type) {
       case ALL_PRODUCT_REQUEST:
         return {
@@ -21,11 +21,16 @@ export const productReducer =
         };
       case ALL_PRODUCT_FAIL:
         return {
-          loading: flase,
+          loading: false,
           product: action.payload,
+        };
+      case CLEAR_ERRORS:
+        return {
+          ...state,
+          error: null,
         };
 
       default:
         return state;
     }
-  });
+  };
