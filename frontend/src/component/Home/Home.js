@@ -9,18 +9,18 @@ import Loader from "../layout/Loader/Loader.js";
 import { useAlert } from "react-alert";
 
 const Home = () => {
-  const alert=useAlert();
+  const alert = useAlert();
   const dispatch = useDispatch();
   const { loading, error, products, productsCount } = useSelector((state) => {
     return state.products;
   });
 
   useEffect(() => {
-    if(error){
+    if (error) {
       return alert.error(error);
     }
     dispatch(getProduct());
-  }, [dispatch,error]);
+  }, [dispatch, error, alert]);
 
   return (
     <Fragment>
