@@ -2,7 +2,7 @@
   max-width: 100%;
   width: 100vw;
   padding: 6vmax;
-  background-color: rgb(214, 214, 214);
+  background-color: rgb(255, 255, 255);
   box-sizing: border-box;
   display: flex;
 }
@@ -138,14 +138,16 @@
   margin-bottom: 4vmax;
 }
 .reviews{
-    border: 1px solid green;
+    /* border: 1px solid green; */
+    display: flex;
+    overflow: auto;
 }
 .reviewCard {
   flex: none;
 
-  border: 5px solid red;
-  /* box-shadow: 0 0 5px rgba(0, 0, 0, 0.226); */
-  /* border: 1px solid rgba(56, 56, 56, 0.116); */
+  /* border: 5px solid red; */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.226);
+  border: 1px solid rgba(56, 56, 56, 0.116);
   width: 30vmax;
   display: flex;
   flex-direction: column;
@@ -159,6 +161,11 @@
 .reviewCard > p {
   color: rgba(0, 0, 0, 0.836);
   font: 600 0.9vmax "Roboto";
+}
+.noReviews {
+  font: 400 1.3vmax "Gill Sans";
+  text-align: center;
+  color: rgba(0, 0, 0, 0.548);
 }
 
 @media screen and (max-width: 600px) {
