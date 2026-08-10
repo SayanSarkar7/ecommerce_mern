@@ -59,6 +59,7 @@ const ProductDetails = ({ match }) => {
           </div>
           <div className="detailsBlock-4">
             
+          
           </div>
         </div>
       </div>
