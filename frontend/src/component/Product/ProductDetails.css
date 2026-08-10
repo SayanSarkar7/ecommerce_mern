@@ -24,4 +24,58 @@
 }
 .detailsBlock-1 > h2 {
   color: rgb(54, 54, 54);
+  font: 600 1.6vmax "Roboto";
 }
+.detailsBlock-1 > p {
+  color: rgb(54, 54, 54, 0.582);
+  font: 200 0.6vmax cursive;
+}
+.detailsBlock-2 {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-top: 1px solid rgb(0, 0, 0, 0.204);
+  border-bottom: 1px solid rgb(0, 0, 0, 0.204);
+  width: 70%;
+  padding: 1vmax 0;
+  column-gap: 10px;
+}
+.detailsBlock-2 > span {
+  color: rgb(54, 54, 54, 0.582);
+  font: 200  0.8vmax cursive;
+}
+.detailsBlock-3 {
+    border: 1px solid red;
+    width: 70%;
+}
+.detailsBlock-3>h1 {
+    color: rgba(17,17,17,0.795);
+    font: 400 1.8vmax "Franklin Gothic Medium";
+    margin: 1vmax 0;
+}
+.detailsBlock-3-1{
+    display: flex;
+    align-items: center;
+}
+.detailsBlock-3-1-1>button{
+    border: none;
+    background-color: rgba(0,0,0,0.616);
+    color: white;
+    padding: 0.5vmax;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+.detailsBlock-3-1-1>button:hover{
+    background-color: rgba(0,0,0,0.767);
+}
+.detailsBlock-3-1-1>input{
+    border: none;
+    padding: 0.5vmax;
+    width: 1vmax;
+    text-align: center;
+    outline: none;
+    font: 400 0.8vax "Roboto";
+    color: rgba(0,0,0,0.74);
+}
+
+
