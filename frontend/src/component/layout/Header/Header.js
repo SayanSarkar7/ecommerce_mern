@@ -33,6 +33,7 @@ const options = {
   searchIconColorHover: "#eb4034",
   cartIconColorHover: "#eb4034",
   cartIconMargin: "1vmax",
+  // searchIconUrl:"/sjkdhbvfjadsfhbgjksdhbfgsb",
 };
 
 const Header = () => {

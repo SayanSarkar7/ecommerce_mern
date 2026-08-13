@@ -22,7 +22,7 @@ const ProductDetails = ({ match }) => {
       dispatch(clearError());
     }
     dispatch(getProductDetails(match.params.id));
-  }, [dispatch, match.params.id]);
+  }, [dispatch, match.params.id, error, alert]);
 
   const options = {
     edit: false,
