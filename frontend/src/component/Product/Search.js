@@ -6,7 +6,7 @@ const Search = ({ history }) => {
   const searchSubmitHandler = (e) => {
     e.preventDefault();
     if (keyword.trim()) {
-      history.push(`/products/${keyword}`);
+      history.push(`/products/${keyword.trim()}`);
     } else {
       history.push("/products");
     }
@@ -19,6 +19,7 @@ const Search = ({ history }) => {
           placeholder="Search a Product..."
           onChange={(e) => setKeyword(e.target.value)}
         />
+        <input type="submit" value="Search" />
       </form>
     </Fragment>
   );
