@@ -31,6 +31,7 @@ exports.getAllProducts = catchAsyncError(async (req, res) => {
     success: true,
     products: products,
     productCount: productCount,
+    resultPerPage: resultPerPage,
   });
 });
 
@@ -141,18 +142,18 @@ exports.deleteReview = catchAsyncError(async (req, res, next) => {
   if (!product) {
     return next(new ErrorHandler("Product not found", 404));
   }
- // Find the review
+  // Find the review
   const review = product.reviews.find(
-    (rev) => rev._id.toString() === req.query.id.toString()
+    (rev) => rev._id.toString() === req.query.id.toString(),
   );
 
   if (!review) {
     return next(new ErrorHandler("Review not found", 404));
   }
-// Check ownership
+  // Check ownership
   if (review.user.toString() !== req.user._id.toString()) {
     return next(
-      new ErrorHandler("You are not authorized to delete this review", 403)
+      new ErrorHandler("You are not authorized to delete this review", 403),
     );
   }
 
