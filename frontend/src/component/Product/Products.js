@@ -9,20 +9,20 @@ import Pagination from "react-js-pagination";
 const Products = ({ match }) => {
   const dispatch = useDispatch();
 
-  const [currentPage,setCurrentPage]=useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const { loading, products, productCount, error, resultPerPage } = useSelector(
     (state) => state.products,
   );
   const keyword = match.params.keyword;
 
-  const setCurrentPageNo=(e)=>{
+  const setCurrentPageNo = (e) => {
     setCurrentPage(e);
-  }
+  };
 
   useEffect(() => {
-    dispatch(getProduct(keyword));
-  }, [dispatch, keyword]);
+    dispatch(getProduct(keyword, currentPage));
+  }, [dispatch, keyword, currentPage]);
 
   return (
     <Fragment>
@@ -38,19 +38,19 @@ const Products = ({ match }) => {
               ))}
           </div>
           <div className="paginationBox">
-            <Pagination 
-             activePage={currentPage}
-             itemsCountPerPage={resultPerPage}
-             totalItemsCount={productCount}
-             onChange={setCurrentPageNo}
-             nextPageText="Next"
-             prevPageText="Prev"
-             firstPageText="1st"
-             lastPageText="Last"
-             itemClass="page-item"
-             linkClass="page-link"
-             activeClass="pageItemActive"
-             activeLinkClass="pageLinkActive"
+            <Pagination
+              activePage={currentPage}
+              itemsCountPerPage={resultPerPage}
+              totalItemsCount={productCount}
+              onChange={setCurrentPageNo}
+              nextPageText="Next"
+              prevPageText="Prev"
+              firstPageText="1st"
+              lastPageText="Last"
+              itemClass="page-item"
+              linkClass="page-link"
+              activeClass="pageItemActive"
+              activeLinkClass="pageLinkActive"
             />
           </div>
         </Fragment>
