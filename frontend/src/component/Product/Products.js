@@ -5,11 +5,15 @@ import { getProduct, clearError } from "../../actions/productAction";
 import Loader from "../layout/Loader/Loader";
 import ProductCard from "../Home/ProductCard";
 import Pagination from "react-js-pagination";
+import Slider from "@material-ui/core/Slider";
+import Typography from "@material-ui/core/Typography";
 
 const Products = ({ match }) => {
   const dispatch = useDispatch();
 
   const [currentPage, setCurrentPage] = useState(1);
+  const [price, setPrice] = useState([0,25000]);
+
 
   const { loading, products, productCount, error, resultPerPage } = useSelector(
     (state) => state.products,
@@ -37,6 +41,19 @@ const Products = ({ match }) => {
                 <ProductCard key={product._id} product={product} />
               ))}
           </div>
+
+          <div className="filterBox">
+            <Typography>Price</Typography>
+            <Slider
+              value={price}
+              onChange={priceHandler}
+              valueLabelDisplay="auto"
+              aria-labelledby="range-slider"
+              min={0}
+              max={25000}
+            />
+          </div>
+
           {resultPerPage < productCount && (
             <div className="paginationBox">
               <Pagination
