@@ -17,7 +17,7 @@ const categories = [
   "Camera",
   "Smartphone",
   "AC",
-  "Air Cooler"
+  "Air Cooler",
 ];
 
 const Products = ({ match }) => {
@@ -46,8 +46,8 @@ const Products = ({ match }) => {
   };
 
   useEffect(() => {
-    dispatch(getProduct(keyword, currentPage, price,category));
-  }, [dispatch, keyword, currentPage, price,category]);
+    dispatch(getProduct(keyword, currentPage, price, category, ratings));
+  }, [dispatch, keyword, currentPage, price, category, ratings]);
 
   let count = filteredProductsCount;
 
@@ -57,70 +57,76 @@ const Products = ({ match }) => {
         <Loader />
       ) : (
         <Fragment>
-          <h2 className="productsHeading">Products</h2>
-          <div className="products">
-            {products &&
-              products.map((product) => (
-                <ProductCard key={product._id} product={product} />
-              ))}
-          </div>
-
-          <div className="filterBox">
-            <Typography>
-              Price:
-              {/* ₹{price[0]} to ₹{price[1]} */}
-            </Typography>
-            <Slider
-              value={price}
-              onChange={priceHandler}
-              valueLabelDisplay="auto"
-              aria-labelledby="range-slider"
-              min={0}
-              max={30000}
-            />
-            <Typography>Categories</Typography>
-            <ul className="categoryBox">
-              {categories.map((category) => (
-                <li
-                  className="category-link"
-                  key={category}
-                  onClick={() => setCategory(category)}
-                >
-                  {category}
-                </li>
-              ))}
-            </ul>
-            <fieldset>
-              <Typography component="legend">Ratings Above</Typography>
-              <Slider value={ratings}
-              onChange={(e,newRating)=>{
-                setRatings(newRating)
-              }}
-              aria-labelledby="continous-slider"
-              min={0}
-              max={5}
-              />
-            </fieldset>
-          </div>
-
-          {resultPerPage < count && (
-            <div className="paginationBox">
-              <Pagination
-                activePage={currentPage}
-                itemsCountPerPage={resultPerPage}
-                totalItemsCount={productCount}
-                onChange={setCurrentPageNo}
-                nextPageText="Next"
-                prevPageText="Prev"
-                firstPageText="1st"
-                lastPageText="Last"
-                itemClass="page-item"
-                linkClass="page-link"
-                activeClass="pageItemActive"
-                activeLinkClass="pageLinkActive"
-              />
+          <div className="productContainer">
+            <h2 className="productsHeading">Products</h2>
+            <div className="products">
+              {products &&
+                products.map((product) => (
+                  <ProductCard key={product._id} product={product} />
+                ))}
             </div>
-          )}
+
+            <div className="filterBox">
+              <Typography>
+                Price:
+                {/* ₹{price[0]} to ₹{price[1]} */}
+              </Typography>
+              <Slider
+                value={price}
+                onChange={priceHandler}
+                valueLabelDisplay="auto"
+                aria-labelledby="range-slider"
+                min={0}
+                max={30000}
+              />
+              <Typography>Categories</Typography>
+              <ul className="categoryBox">
+                {categories.map((category) => (
+                  <li
+                    className="category-link"
+                    key={category}
+                    onClick={() => setCategory(category)}
+                  >
+                    {category}
+                  </li>
+                ))}
+              </ul>
+              <fieldset>
+                <Typography component="legend">Ratings Above</Typography>
+                <Slider
+                  value={ratings}
+                  onChange={(e, newRating) => {
+                    setRatings(newRating);
+                  }}
+                  aria-labelledby="continous-slider"
+                  valueLabelDisplay="auto"
+                  min={0}
+                  max={5}
+                />
+              </fieldset>
+            </div>
+
+            {resultPerPage < count ? (
+              <div className="paginationBox">
+                <Pagination
+                  activePage={currentPage}
+                  itemsCountPerPage={resultPerPage}
+                  totalItemsCount={productCount}
+                  onChange={setCurrentPageNo}
+                  nextPageText="Next"
+                  prevPageText="Prev"
+                  firstPageText="1st"
+                  lastPageText="Last"
+                  itemClass="page-item"
+                  linkClass="page-link"
+                  activeClass="pageItemActive"
+                  activeLinkClass="pageLinkActive"
+                />
+              </div>
+            ) : (
+              <h2 className="noProduct">No Products Found</h2>
+            )}
+          </div>
         </Fragment>
       )}
     </Fragment>
