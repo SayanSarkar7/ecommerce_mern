@@ -1,11 +1,19 @@
-import React, { Fragment, useRef } from "react";
+import React, { Fragment, useRef, useState } from "react";
 import "./LoginSignUp.css";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import MailOutlineIcon from "@material-ui/icons/MailOutline";
+import LockOpenIcon from "@material-ui/icons/LockOpen";
 
 const LoginSignUp = () => {
   const loginTab = useRef(null);
   const registerTab = useRef(null);
   const switcherTab = useRef(null);
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+
+  const loginSubmit = () => {
+    console.log("Form Submitted");
+  };
 
   const switchTabs = (e, tab) => {
     if (tab == "login") {
