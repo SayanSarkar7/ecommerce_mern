@@ -20,13 +20,13 @@ const LoginSignUp = () => {
       switcherTab.current.classList.add("shiftToNeutral");
       switcherTab.current.classList.remove("shiftToRight");
       registerTab.current.classList.remove("shiftToNeutralForm");
-      loginTab.current.classList.remove("shiftToRight");
+      loginTab.current.classList.remove("shiftToLeft");
     }
     if (tab == "register") {
       switcherTab.current.classList.add("shiftToRight");
       switcherTab.current.classList.remove("shiftToNeutral");
       registerTab.current.classList.add("shiftToNeutralForm");
-      loginTab.current.classList.add("shiftToRight");
+      loginTab.current.classList.add("shiftToLeft");
     }
   };
 
