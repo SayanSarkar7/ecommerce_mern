@@ -13,9 +13,12 @@
   "dependencies": {
     "bcryptjs": "^3.0.3",
     "body-parser": "^2.3.0",
+    "cloudinary": "^1.26.3",
     "cookie-parser": "^1.4.7",
+    "datauri": "^3.0.0",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
+    "express-fileupload": "^1.2.1",
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^8.24.0",
     "nodemailer": "^9.0.1",

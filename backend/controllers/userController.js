@@ -4,21 +4,67 @@ const catchAsyncError = require("../middleware.js/catchAsyncErrors");
 const sendToken = require("../utils/jwtToken");
 const sendEmail = require("../utils/sendEmail");
 const crypto = require("crypto");
+const cloudinary = require("cloudinary");
 
 // Register User
+// exports.registerUser = catchAsyncError(async (req, res, next) => {
+//   // const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
+//   //   folder: "avatars",
+//   //   width: 150,
+//   //   crop: "scale",
+//   // });
+
+//   // const { name, email, password } = req.body;
+//   // const user = await User.create({
+//   //   name,
+//   //   email,
+//   //   password,
+//   //   avatar: {
+//   //     public_id: myCloud.public_id,
+//   //     url: myCloud.secure_url,
+//   //   },
+//   // });
+
+//   // sendToken(user, 201, res, "User Registered Successfully");
+//   console.log("before register user execution");
+
+//   console.log("Avatar exists:", !!req.body.avatar);
+//   console.log("Avatar type:", typeof req.body.avatar);
+//   console.log("Avatar length:", req.body.avatar?.length);
+
+//   try {
+//     const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
+//       folder: "avatars",
+//       width: 150,
+//       crop: "scale",
+//     });
+
+//     console.log("Cloudinary upload successful:", myCloud.public_id);
+//   } catch (error) {
+//     console.log("CLOUDINARY ERROR:", error);
+//     return next(new ErrorHandler(error.message, 403));
+//   }
+// });
 exports.registerUser = catchAsyncError(async (req, res, next) => {
+  // const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
+  //   folder: "avatars",
+  //   width: 150,
+  //   crop: "scale",
+  // });
+
   const { name, email, password } = req.body;
+
   const user = await User.create({
     name,
     email,
     password,
     avatar: {
-      public_id: "This is a sample id",
-      url: "profilepicurl",
+      public_id: "kdsjfgksjbgkljbs",
+      url: "ajknklsajerkgfsjbek",
     },
   });
 
-  sendToken(user, 201, res, "User Registered Successfully");
+  sendToken(user, 201, res);
 });
 
 //Login User
@@ -221,9 +267,10 @@ exports.updateUserRole = catchAsyncError(async (req, res, next) => {
     useFindAndModify: false,
   });
 
-  
-  if(!user){
-    return next(new ErrorHandler(`User doesn't exist with Id: ${req.params.id}`,400));
+  if (!user) {
+    return next(
+      new ErrorHandler(`User doesn't exist with Id: ${req.params.id}`, 400),
+    );
   }
 
   res.status(200).json({
@@ -234,8 +281,10 @@ exports.updateUserRole = catchAsyncError(async (req, res, next) => {
 // Delete User -- Admin
 exports.deleteUser = catchAsyncError(async (req, res, next) => {
   const user = await User.findById(req.params.id);
-  if(!user){
-    return next(new ErrorHandler(`User doesn't exist with Id: ${req.params.id}`,400));
+  if (!user) {
+    return next(
+      new ErrorHandler(`User doesn't exist with Id: ${req.params.id}`, 400),
+    );
   }
   // will remove cloudinary later
 
@@ -246,4 +295,3 @@ exports.deleteUser = catchAsyncError(async (req, res, next) => {
     message: "User deleted Successfully",
   });
 });
-

@@ -1,12 +1,17 @@
 const express = require("express");
 const errorMiddleware = require("./middleware.js/error");
 const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
+const fileupload = require("express-fileupload");
+
 
 const app = express();
 // console.log(app.get("query parser"));
 app.set("query parser", "extended");
 app.use(express.json());
 app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(fileupload());
 
 // Route Imports
 const product = require("./routes/productRoute");
