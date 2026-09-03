@@ -3,6 +3,7 @@ const validator = require("validator"); // to validate email field
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
+const { type } = require("os");
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -38,6 +39,10 @@ const userSchema = new mongoose.Schema({
   role: {
     type: String,
     default: "user",
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
   },
   resetPasswordToken: String,
   resetPasswordExpired: Date,
