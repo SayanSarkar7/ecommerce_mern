@@ -10,6 +10,7 @@ import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
 import { logout } from "../../../actions/userAction";
+import zIndex from "@material-ui/core/styles/zIndex";
 // import { logout } from "../../../actions/userAction";
 
 const UserOption = ({ user }) => {
@@ -48,12 +49,14 @@ const UserOption = ({ user }) => {
 
   return (
     <Fragment>
+      <Backdrop open={open} style={{zIndex: "10"}} />
       <SpeedDial
         ariaLabel="SpeedDial tooltip example"
         onClose={() => setOpen(false)}
         onOpen={() => setOpen(true)}
         open={open}
         direction="down"
+        style={{zIndex:"11"}}
         icon={
           <img className="SpeedDialIcon" alt="Profile" src="/Profile.png" />
         }

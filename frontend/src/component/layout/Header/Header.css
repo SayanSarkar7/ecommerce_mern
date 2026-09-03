@@ -9,12 +9,3 @@
     height: 56px;
     border-radius: 100%;
 }
-.speedDial .MuiFab-root {
-  border: none;
-  box-shadow: none;
-}
-
-.speedDial .MuiFab-root:focus {
-  outline: none;
-  box-shadow: none;
-}
