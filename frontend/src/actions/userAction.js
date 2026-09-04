@@ -76,7 +76,7 @@ export const loadUser = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: LOAD_USER_FAIL,
-      payload: error.response.data.errMsg,
+      payload: error.response ? error.response.data.errMsg : error.message,
     });
   }
 };
@@ -149,13 +149,17 @@ export const forgotPassword = (email) => async (dispatch) => {
   }
 };
 // Reset Password
-export const resetPassword = (token,passwords) => async (dispatch) => {
+export const resetPassword = (token, passwords) => async (dispatch) => {
   try {
     dispatch({ type: RESET_PASSWORD_REQUEST });
 
     const config = { headers: { "Content-Type": "application/json" } };
 
-    const { data } = await axios.put(`/api/v1/password/reset/${token}`, passwords, config);
+    const { data } = await axios.put(
+      `/api/v1/password/reset/${token}`,
+      passwords,
+      config,
+    );
 
     dispatch({ type: RESET_PASSWORD_SUCCESS, payload: data.success });
   } catch (error) {

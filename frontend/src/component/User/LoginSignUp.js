@@ -9,7 +9,7 @@ import { clearError, login, register } from "../../actions/userAction";
 import { useAlert } from "react-alert";
 import Loader from "../layout/Loader/Loader";
 
-const LoginSignUp = ({ history }) => {
+const LoginSignUp = ({ history,location }) => {
   const dispatch = useDispatch();
   const alert = useAlert();
 
@@ -59,16 +59,16 @@ const LoginSignUp = ({ history }) => {
       setUser({ ...user, [e.target.name]: e.target.value });
     }
   };
-
+  const redirect = location.search ? location.search.split("=")[1] : "/account";
   useEffect(() => {
     if (error) {
       alert.error(error);
       dispatch(clearError());
     }
     if (isAuthenticated) {
-      history.push("/account");
+      history.push(redirect);
     }
-  }, [dispatch, error, alert, history, isAuthenticated]);
+  }, [dispatch, error, alert, history, isAuthenticated,redirect]);
 
   const switchTabs = (e, tab) => {
     if (tab == "login") {
