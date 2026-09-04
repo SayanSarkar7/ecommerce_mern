@@ -63,7 +63,7 @@ const Products = ({ match }) => {
         <Loader />
       ) : (
         <Fragment>
-          <MetaData title="Products -- ECOMMERCE_MERN"/>
+          <MetaData title="Products -- ECOMMERCE_MERN" />
           <div className="productContainer">
             <h2 className="productsHeading">Products</h2>
             <div className="products">
@@ -113,23 +113,27 @@ const Products = ({ match }) => {
               </fieldset>
             </div>
 
-            {resultPerPage < count ? (
-              <div className="paginationBox">
-                <Pagination
-                  activePage={currentPage}
-                  itemsCountPerPage={resultPerPage}
-                  totalItemsCount={productCount}
-                  onChange={setCurrentPageNo}
-                  nextPageText="Next"
-                  prevPageText="Prev"
-                  firstPageText="1st"
-                  lastPageText="Last"
-                  itemClass="page-item"
-                  linkClass="page-link"
-                  activeClass="pageItemActive"
-                  activeLinkClass="pageLinkActive"
-                />
-              </div>
+            {products && products.length > 0 ? (
+              <Fragment>
+                {resultPerPage < count && (
+                  <div className="paginationBox">
+                    <Pagination
+                      activePage={currentPage}
+                      itemsCountPerPage={resultPerPage}
+                      totalItemsCount={productCount}
+                      onChange={setCurrentPageNo}
+                      nextPageText="Next"
+                      prevPageText="Prev"
+                      firstPageText="1st"
+                      lastPageText="Last"
+                      itemClass="page-item"
+                      linkClass="page-link"
+                      activeClass="pageItemActive"
+                      activeLinkClass="pageLinkActive"
+                    />
+                  </div>
+                )}
+              </Fragment>
             ) : (
               <h2 className="noProduct">No Products Found</h2>
             )}
