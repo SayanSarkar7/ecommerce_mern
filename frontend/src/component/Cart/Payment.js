@@ -38,7 +38,7 @@ const Payment = ({ history }) => {
 
   const order = {
     shippingInfo,
-    orderItems: cartItems,
+    orderItem: cartItems,
     itemsPrice: orderInfo.subtotal,
     taxPrice: orderInfo.tax,
     shippingPrice: orderInfo.shippingCharges,
